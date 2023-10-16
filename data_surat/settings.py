@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',   
     'django_minify_html',
+    'cachalot',
     'data_surat_app',
     'accounts',
 ]
