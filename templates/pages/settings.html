@@ -1,0 +1,51 @@
+{% extends 'base.html' %} 
+{% load static %} 
+
+{% block settings %}
+
+{%include 'partials/index_header.html' %}
+
+
+<div class="d-flex flex-fill">
+    <div class="container-fluid mt-1 text-white">
+        <h5 class="text-center">Klasifikasi</h5>
+        <table id="tabel_klasifikasi" class="table table-striped table-bordered text-white" style="width:100%">
+            <thead>
+                <tr>
+                    <th class="text-center">No</th>
+                    <th class="text-center">Klasifikasi</th>
+                    <th class="text-center">Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for data in klasifikasi %}
+                <tr>    
+                        <td>{{  forloop.counter }}</td>
+                        <td>{{ data.katagori }}</td>
+                        <td class="text-center"> 
+                             <button type="button" class="btn btn-success fas fa-edit"  data-bs-toggle="modal"  data-placement="bottom" title="Edit" data-bs-target="#edit_klasifikasi{{ data.id }}"></button>
+                             <button type="button" class="btn btn-danger fa fa-trash"  data-bs-toggle="modal" data-placement="bottom" title="Hapus" data-bs-target="#delete_klasifikasi{{ data.id }}"></button>
+                        </td>  
+                </tr>
+                {% endfor %} 
+            </tbody>
+        </table>
+        <div class="d-grid gap-2 col-2 mx-auto mt-5">
+            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-placement="bottom" title="Tambah Data Klasifikasi" data-bs-target="#tambah_klasifikasi">Tambah Klasifikasi</button>
+        </div>
+    </div>
+
+</div>
+
+
+{% include 'modal/tambah_klasifikasi.html' %}
+    
+{% comment %} {% include 'partials/modal_setting_edit_delete.html' %} {% endcomment %}
+  
+<div class="container">
+    <footer class="py-3 my-4">
+      <p class="text-center text-muted">&copy; 2023 - {% now "Y" %}  Data Surat By Abdul Rachman</p>
+      <p class="text-center text-muted">Untuk Ropeg - Kemhan</p>
+    </footer>
+</div>
+{% endblock settings %}

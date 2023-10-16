@@ -1,0 +1,51 @@
+{% extends 'base.html' %} 
+{% load static %} 
+
+{% block tambah_data %}
+
+{%include 'partials/index_header.html' %}
+
+<div class="container mt-5">
+    <p class="text-center" style="font-size: 25px;">TAMBAH DATA</p>
+    <form action="{% url 'tambah_data'%}" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate >  
+       {% csrf_token %}     
+        
+        <input class="form-control " type="file" accept=".pdf" id="file_input" name="file_name" required />
+
+        <div class="d-flex mt-3 gap-4">
+  
+          <select class="form-select" required aria-label="Default select example" name="surat">
+            <option value="">SURAT</option>
+            <option value="Masuk">Masuk</option>
+            <option value="Keluar">Keluar</option>
+          </select>
+
+          <select class="form-select" required aria-label="Default select example" name="klasifikasi">
+            <option value="">KLASIFIKASI SURAT</option>
+            {% for v in klasifikasi %}
+            <option value="{{ v }}">{{v}}</option>
+            {% endfor %}
+          </select>
+
+          <div>
+              <input type="date" class="form-control" required name="tanggal">
+          </div>
+        </div>
+  
+        <div class="d-grid gap-2 col-3 mx-auto mt-5">
+            <button type="submit" class="btn btn-success">PROSES</button>
+        </div>
+  </form>
+</div> 
+
+
+
+<div class="container">
+    <footer class="py-3 my-4">
+      <p class="text-center text-muted">&copy; 2023 - {% now "Y" %}  Data Surat By Abdul Rachman</p>
+      <p class="text-center text-muted">Untuk Ropeg - Kemhan</p>
+    </footer>
+</div>
+
+
+{% endblock tambah_data %}
